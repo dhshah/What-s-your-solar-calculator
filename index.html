@@ -1,57 +1,151 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en" class="no-js">
 <head>
-  <meta charset='utf-8'>
-  <meta http-equiv="X-UA-Compatible" content="chrome=1">
-  <meta name="description" content="What-s-your-solar-calculator : Daemon Dash UMD Hackathon - Solar Power App">
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<title>Morphing Buttons Concept | Demo 1</title>
+	<meta name="description" content="Morphing Buttons Concept: Inspiration for revealing content by morphing the action element" />
+	<meta name="keywords" content="expanding button, morph, modal, fullscreen, transition, ui" />
 
-  <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/animations.css">
+	<link rel="shortcut icon" href="../favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="css/component.css" />
+	<link rel="stylesheet" type="text/css" href="css/content.css" />
 
-  <title>What-s-your-solar-calculator</title>
+	<script src="js/modernizr.custom.js"></script>
+
+	<script type="text/javascript">
+	function calculate(){
+		var x = document.getElementById("zipcode").value;
+		var y = document.getElementById("sqft").value;
+		alert(x + " " + y);
+	}
+	</script>
 </head>
-
 <body>
+	<div class="container">
+		<!-- Top Navigation -->
+		<header class="codrops-header">
+			<h1>Solar Power Calculator</h1>
+			<p>Whats Your Solar Calculator?</p>
+		</header>
 
-  <div id="st-container" class="st-container">
-    <div class="st-pusher">
-      <div class="container">
+		<section>
+			<div class="morph-button morph-button-modal morph-button-modal-1 morph-button-fixed">
+				<button type="button">About the App</button>
+				<div class="morph-content">
+					<div>
+						<div class="content-style-form content-style-form-1">
+							<span class="icon icon-close">Close the dialog</span>
+							<h2>INSERT INFO ABOUT THE APP HERE.</h2>
+						</div>
+					</div>
+				</div>
+			</div><!-- morph-button -->
+			<div class="morph-button morph-button-modal morph-button-modal-2 morph-button-fixed" style="float:right">
+				<button type="button">Calculate</button>
+				<div class="morph-content">
+					<div>
+						<div class="content-style-form content-style-form-1">
+							<span class="icon icon-close">Close the dialog</span>
+							<h2>Calculate</h2>
+							<form>
+								<p><label>Zipcode</label><input type="text" id="zipcode"/></p>
+								<p><label>SolarPanelSqFt</label><input type="text" id="sqft"/></p>
+								<p><button onclick="calculate()">Submit</button></p>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div><!-- morph-button -->
+			<div class="morph-button morph-button-overlay morph-button-fixed">
+				<button type="button">About Us</button>
+				<div class="morph-content">
+					<div>
+						<div class="content-style-overlay">
+							<span class="icon icon-close">Close the overlay</span>
 
-        <header>
-          <div id="start">
-            <h1 id="heading"> What's Your Solar Calculator </h1>
-            <h3 id="subheading"> Daemon Dash, 2014 </h3>
-          </div>
-        </header>
+							<p> INSERT ABOUT US HERE!!!! </p>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</section>
 
-        <nav class="st-menu st-effect-12" id="menu">
-          <ul>
-            <li id="current"><a href="index.html">Home</a></li>
-            <li><a href="calc.html">Calculator</a></li>
-            <li><a href="about.html">About</a></li>
-          </ul>
-        </nav>
+		<footer class="codrops-footer">
+			<h2> Solar Power Calculator </h2>
+			<p> created by: Darshan Shah, John French, Benjamin Poling, Michael Mele </p>
+			<p> for Daemon Dash Hackathon at University of Maryland, College Park </p>
+		</footer>
+	</div><!-- /container -->
 
-        <div id="mid">
-          <h2> Home </h2>
+	<script src="js/classie.js"></script>
+	<script src="js/uiMorphingButton_fixed.js"></script>
+	<script>
+	(function() {
+		var docElem = window.document.documentElement, didScroll, scrollPosition;
 
-          <!-- Top Navigation -->
-          <div id="st-trigger-effects" class="column">
-            <button id="open-menu-button" data-effect="st-effect-12"><img src="images/menu.png"> </img></button>
-          </div>
-        </div>
-        <footer>
-          <div id="ending">
-            <h2> created by Darshan Shah, Benjamin Poling, Michael Mele, John French </h2>
-            <h2> in <strong> Daemon Dash 2014 </strong> </h2>
-            <h2> at University of Maryland, College Park </h2>
-          </div>
-        </footer>
-      </div>
-    </div>
-  </div>
-  <script src="js/classie.js"></script>
-  <script src="js/sidebarEffects.js"></script>
+		// trick to prevent scrolling when opening/closing button
+		function noScrollFn() {
+			window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+		}
+
+		function noScroll() {
+			window.removeEventListener( 'scroll', scrollHandler );
+			window.addEventListener( 'scroll', noScrollFn );
+		}
+
+		function scrollFn() {
+			window.addEventListener( 'scroll', scrollHandler );
+		}
+
+		function canScroll() {
+			window.removeEventListener( 'scroll', noScrollFn );
+			scrollFn();
+		}
+
+		function scrollHandler() {
+			if( !didScroll ) {
+				didScroll = true;
+				setTimeout( function() { scrollPage(); }, 60 );
+			}
+		};
+
+		function scrollPage() {
+			scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+			didScroll = false;
+		};
+
+		scrollFn();
+
+		[].slice.call( document.querySelectorAll( '.morph-button' ) ).forEach( function( bttn ) {
+			new UIMorphingButton( bttn, {
+				closeEl : '.icon-close',
+				onBeforeOpen : function() {
+					// don't allow to scroll
+					noScroll();
+				},
+				onAfterOpen : function() {
+					// can scroll again
+					canScroll();
+				},
+				onBeforeClose : function() {
+					// don't allow to scroll
+					noScroll();
+				},
+				onAfterClose : function() {
+					// can scroll again
+					canScroll();
+				}
+			} );
+		} );
+
+		// for demo purposes only
+		[].slice.call( document.querySelectorAll( 'form button' ) ).forEach( function( bttn ) { 
+			bttn.addEventListener( 'click', function( ev ) { ev.preventDefault(); } );
+		} );
+	})();
+	</script>
 </body>
 </html>
