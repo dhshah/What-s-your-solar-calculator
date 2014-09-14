@@ -45,7 +45,6 @@
       var city1 = city.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
       var city_new = city1.replace(/\s+/g, '_');
     var stat = state.toUpperCase();
-    alert(city + ", "+state)
     var str_url = "http://api.wunderground.com/api/3568683864a57f29/hourly/q/" + stat + "/" + city_new + ".json";
     jQuery(document).ready(function($) {
       $.ajax({
