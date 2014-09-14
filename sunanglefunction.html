@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body onload = "calculateSunAngle()">
+
+<h2>Create Object from JSON String</h2>
+
+<p>The city is: </p>
+<p id="demo"></p>
+
+<script>
+
+function calculateSunAngle(){
+    var currentTime = new Date();
+    var sunAngle;
+    var currentHour = currentTime.getHours();
+    
+    if(currentHour >= 6 || currentHour <= 12){
+        sunAngle = (currentHour-6)*15;
+    }else{
+        sunAngle = 0;
+    }
+    sunAngle += ((currentTime.getMinutes())/60)*15;     
+
+    document.getElementById("demo").innerHTML = sunAngle;
+    //document.getElementById("demo").innerHTML = "blahhh";
+}
+
+
+</script>
+
+</body>
+</html>
