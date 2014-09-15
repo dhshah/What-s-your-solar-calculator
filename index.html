@@ -149,8 +149,8 @@
     document.getElementById("label1").innerHTML = "<strong>Location </strong>: " + city + "," + state;
     document.getElementById("label1").style.fontSize = "18px";
     document.getElementById("label1").style.color = "#444";
-    document.getElementById("label2").innerHTML = "<p> <strong>Daily Energy</strong>: " + instantPostUnitConversion.toPrecision(2) + "kw/h</p>"
-    document.getElementById("label2").innerHTML += "<p> <strong>Yearly Energy</strong>: " + energy.toPrecision(2) + "kw</p>"
+    document.getElementById("label2").innerHTML = "<p> <strong>Daily Energy</strong>: " + instantPostUnitConversion.toFixed(2) + "kw/h</p>"
+    document.getElementById("label2").innerHTML += "<p> <strong>Yearly Energy</strong>: " + energy.toFixed(2) + "kw</p>"
     document.getElementById("label2").style.fontSize = "24px";
     document.getElementById("label2").style.color = "#444";
     document.getElementById("button-enable").innerHTML = "<button onclick='document.location.reload(true)'>Reset</button>"
